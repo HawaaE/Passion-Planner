@@ -1,0 +1,230 @@
+import React, { Component } from "react";
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  AsyncStorage,
+  Button,
+  TextInput,
+  Keyboard,
+  Platform, TouchableHighlight
+} from "react-native";
+
+const isAndroid = Platform.OS == "android";
+const viewPadding = 10;
+
+export default class TodoList extends Component {
+  state = {
+    july: [],
+    text: ""
+  };
+
+  changeTextHandler = text => {
+    this.setState({ text: text });
+  };
+
+  addTask = () => {
+    let notEmpty = this.state.text.trim().length > 0;
+
+    if (notEmpty) {
+      this.setState(
+        prevState => {
+          let { july, text } = prevState;
+          return {
+            july: july.concat({ key: july.length, text: text }),
+            text: ""
+          };
+        },
+        () => July.save(this.state.july)
+      );
+    }
+  };
+
+  deleteTask = i => {
+    this.setState(
+      prevState => {
+        let july = prevState.july.slice();
+
+        july.splice(i, 1);
+
+        return { tasks: july };
+      },
+      () => July.save(this.state.july)
+    );
+  };
+
+  componentDidMount() {
+    Keyboard.addListener(
+      isAndroid ? "keyboardDidShow" : "keyboardWillShow",
+      e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
+    );
+
+    Keyboard.addListener(
+      isAndroid ? "keyboardDidHide" : "keyboardWillHide",
+      () => this.setState({ viewPadding: viewPadding })
+    );
+
+    July.all(tasks => this.setState({ tasks: tasks || [] }));
+  }
+
+  render() {
+      const { navigate } = this.props.navigation;
+    return (
+      <View
+        style={[styles.container, { paddingBottom: this.state.viewPadding }]}
+      >
+      <View style={styles.box1}>
+<Text style={styles.text}>
+July 
+
+<TextInput placeholder="" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} /> 2020
+</Text>
+</View>
+<Text style = {styles.text}>
+To Do List:
+</Text>
+
+       <TextInput
+          style={styles.textInput}
+          onChangeText={this.changeTextHandler}
+          onSubmitEditing={this.addTask}
+          value={this.state.text}
+          placeholder=""
+          returnKeyType="done"
+          returnKeyLabel="done"
+        />
+        <FlatList
+          style={styles.list}
+          data={this.state.tasks}
+          renderItem={({ item, index }) =>
+            <View>
+              <View style={styles.listItemCont}>
+                <Text style={styles.listItem}>
+                  {item.text}
+                </Text>
+                <Button title="X" onPress={() => this.deleteTask(index)} />
+              </View>
+              <View style={styles.hr} />
+            </View>}
+        />
+     
+<View style={styles.textContainer}>
+            <TouchableHighlight
+             onPress={() =>
+            navigate('Starter', { value: 'YOUR LIST HAS BEEN SAVED' })}
+            >
+           <View style={styles.touchableButton}>
+                        <Text style={styles.buttonText}>
+                            Save To Do List
+                        </Text>
+                    </View>
+                </TouchableHighlight>  
+                </View>
+
+          
+      </View>
+    );
+  }
+}
+
+let July = {
+  convertToArrayOfObject(july, callback) {
+    return callback(
+      july ? july.split("||").map((task, i) => ({ key: i, text: task })) : []
+    );
+  },
+  convertToStringWithSeparators(july) {
+    return july.map(task => task.text).join("||");
+  },
+  all(callback) {
+    return AsyncStorage.getItem("July", (err, july) =>
+      this.convertToArrayOfObject(july, callback)
+    );
+  },
+  save(july) {
+    AsyncStorage.setItem("July", this.convertToStringWithSeparators(july));
+  }
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    padding: viewPadding,
+    paddingTop: 20
+  },
+  list: {
+    width: "100%"
+  },
+  listItem: {
+    paddingTop: 2,
+    paddingBottom: 2,
+    fontSize: 18
+  },
+  hr: {
+    height: 1,
+    backgroundColor: "gray"
+  },
+  listItemCont: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  textInput: {
+    height: 200,
+    paddingRight: 10,
+    paddingLeft: 10,
+  marginBottom:50,
+ 
+    width: "100%"
+  },
+  text: {
+color: 'black',
+fontSize: 20,
+marginTop: 5,
+
+
+},
+
+
+box1:{
+borderWidth: 5,
+borderColor: '#fec4ff',
+ height: 80,
+ justifyContent: 'center',
+ alignItems:'center',  
+ marginBottom:20,
+},
+
+loginFormTextInput: {
+  height: 20,
+  width:20,
+  margin:5,
+  fontSize: 14,
+  borderWidth: 1,
+  borderColor: 'black',
+  backgroundColor: '#fafafa',
+  
+},
+ touchableButton: {
+        backgroundColor: '#DDFFE7',
+        height: 40,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 50,
+         borderRadius: 10,
+       
+ },
+ textContainer:
+{
+  alignItems: 'center',
+        justifyContent: 'center',
+}
+   
+});
+
+AppRegistry.registerComponent("TodoList", () => TodoList)
