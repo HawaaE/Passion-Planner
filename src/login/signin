@@ -63,9 +63,7 @@ class Signin extends React.Component {
 
      
 const styles = StyleSheet.create({
- containerView: {
-  flex: 1,
-},
+ 
 signinScreenContainer: {
   flex: 1,
 },
