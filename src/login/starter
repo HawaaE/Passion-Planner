@@ -1,0 +1,216 @@
+import React, { Component } from "react";
+
+
+
+import {Keyboard, Text, View, TextInput, TouchableWithoutFeedback, Alert, KeyboardAvoidingView, Expo,Platform, StyleSheet, Button, Image, TouchableHighlight, ScrollView} from 'react-native';
+
+
+
+class Starter extends React.Component {
+
+
+  constructor(props) {
+    super(props);
+    const {params} = this.props.navigation.state;
+    alert(JSON.stringify(params.value));
+    this.state = {
+      inDollars: '',
+      inEuro: '',
+      inPounds: '',
+   };
+  }
+
+render() {
+
+
+
+return (
+
+
+
+<View style={styles.containerView}>
+
+<View style={styles.signupFormView}>
+
+
+
+
+
+
+<Image source ={{uri: 'https://codehs.com/uploads/da5ab9449a6c4a3ca804e7b2dc4cb9d9'}}
+
+style={{ height: 100, width: 100, justifyContent: 'center', margin: 40, alignContent: 'center' }}
+
+/>
+
+
+
+
+
+<View style={styles.textContainer}>
+
+<TouchableHighlight
+
+onPress={() => this.props.navigation.navigate('Plan')}
+
+>
+
+<View style={styles.touchableButton1}>
+
+<Text style={styles.buttonText}>
+
+Make Another List
+
+</Text>
+
+</View>
+
+</TouchableHighlight>
+
+
+
+<TouchableHighlight
+
+onPress={() => this.props.navigation.navigate('Todojune')}
+
+>
+
+<View style={styles.touchableButton1}>
+
+<Text style={styles.buttonText}>
+
+June List
+
+</Text>
+
+</View>
+
+</TouchableHighlight>
+
+
+
+
+<TouchableHighlight
+
+onPress={() => this.props.navigation.navigate('Plan')}
+
+>
+
+<View style={styles.touchableButton1}>
+
+<Text style={styles.buttonText}>
+
+July List
+
+</Text>
+
+</View>
+
+</TouchableHighlight>
+
+
+
+
+
+<TouchableHighlight
+
+onPress={() => this.props.navigation.navigate('Plan')}
+
+>
+
+<View style={styles.touchableButton1}>
+
+<Text style={styles.buttonText}>
+
+August List
+
+</Text>
+
+</View>
+
+</TouchableHighlight>
+
+
+</View>
+</View>
+
+
+</View>
+
+
+
+);
+
+}
+
+
+}
+
+
+
+
+
+
+const styles = StyleSheet.create({
+
+
+containerView: {
+
+flex: 1,
+justifyContent: 'center',
+
+alignItems: 'center',
+
+
+},
+
+
+textContainer: {
+
+justifyContent: 'center',
+
+alignItems: 'center',
+
+},
+
+
+signupFormView: {
+
+flex: 1
+
+},
+
+
+
+ touchableButton1: {
+        backgroundColor: '#DDFFE7',
+        height: 40,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 50,
+         borderRadius: 10,
+ },
+   
+
+
+
+
+buttonText: {
+
+
+
+
+
+fontSize: 14,
+
+fontWeight:'bold',
+
+}
+
+});
+
+
+
+export default Starter;
