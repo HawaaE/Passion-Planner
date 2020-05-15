@@ -1,0 +1,115 @@
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  Keyboard,
+  View,
+  TextInput,
+  TouchableWithoutFeedback,
+  Alert,
+  KeyboardAvoidingView,
+  Button,
+  Image,
+  TouchableHighlight,
+  ImageBackground,Platform,Animated
+} from 'react-native';
+
+
+
+class Home extends React.Component {
+
+  
+
+  render() {
+    return (
+
+
+      <View style={styles.container}>
+       
+          <View style={styles.textContainer}>
+
+          <Image source ={{uri: 'https://codehs.com/uploads/da5ab9449a6c4a3ca804e7b2dc4cb9d9'}}
+ style={{ height: 190, width: 250, justifyContent: 'center', }}
+/>
+          
+          
+            </View>
+
+
+ 
+
+<View style={styles.textContainer}>
+            <TouchableHighlight
+              onPress={() => this.props.navigation.navigate('Signup')}
+            >
+           <View style={styles.touchableButton1}>
+                        <Text style={styles.buttonText}>
+                            GET STARTED
+                        </Text>
+                    </View>
+                </TouchableHighlight>  
+                </View>
+                <View style={styles.textContainer}>
+            <TouchableHighlight
+              onPress={() => this.props.navigation.navigate('Signin')}
+            >
+           <View style={styles.touchableButton2}>
+                        <Text style={styles.buttonText}>
+                            Already Have A Account
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+                </View>
+
+
+
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+  },
+
+
+  textContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+
+
+   touchableButton1: {
+        backgroundColor: '#DDFFE7',
+        height: 40,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 100,
+        marginBottom: 50,
+         borderRadius: 10,
+   
+   
+    },
+   
+    buttonText: {
+     
+        
+        fontSize: 14,
+        fontWeight:'bold',
+    },
+    touchableButton2: {
+        backgroundColor: 'clear',
+        height : 1,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
+
+
+export default Home;
