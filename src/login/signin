@@ -1,0 +1,130 @@
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  Keyboard,
+  View,
+  TextInput,
+  TouchableWithoutFeedback,
+  Alert,
+  KeyboardAvoidingView,
+  Button,
+  Image,
+  TouchableHighlight,
+  ImageBackground,Platform,Animated
+} from 'react-native';
+
+
+
+class Signin extends React.Component {
+
+  
+
+  render() {
+    return (
+<KeyboardAvoidingView style={styles.containerView} behavior="padding">
+
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.signinScreenContainer}>
+          <View style={styles.signinFormView}>
+
+<View style={styles.textContainer}>
+
+<Image source ={{uri: 'https://codehs.com/uploads/da5ab9449a6c4a3ca804e7b2dc4cb9d9'}}
+ style={{ height: 100, width: 100, justifyContent: 'center', margin: 40, alignContent: 'center' }}
+/>
+
+</View>
+
+          <Text style={styles.logoText}>EMAIL ADDRESS</Text>
+            <TextInput placeholder="Email" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
+                      <Text style={styles.logoText}> Password</Text>
+            <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
+                  
+            
+          
+           <View style={styles.textContainer}>
+            <TouchableHighlight
+              onPress={() => this.props.navigation.navigate('Plan')}
+            >
+           <View style={styles.touchableButton1}>
+                        <Text style={styles.buttonText}>
+                            CONTINUE
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+            </View>
+            
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    );
+  }
+
+}
+
+     
+const styles = StyleSheet.create({
+ containerView: {
+  flex: 1,
+},
+signinScreenContainer: {
+  flex: 1,
+},
+textContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+signinFormView: {
+  flex: 1
+},
+loginFormTextInput: {
+  height: 43,
+  fontSize: 14,
+  borderRadius: 5,
+  borderWidth: 1,
+  borderColor: '#eaeaea',
+  backgroundColor: '#fafafa',
+  paddingLeft: 10,
+  marginLeft: 15,
+  marginRight: 15,
+  marginTop: 5,
+  marginBottom: 5,
+
+},
+
+touchableButton1: {
+        backgroundColor: '#7d0ae6',
+        height: 40,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 100,
+        marginBottom: 50,
+         borderRadius: 10,
+    borderWidth: 1,
+    
+   
+    },
+    logoText: {
+  fontSize: 15,
+  fontWeight: "800",
+  marginBottom: 10,
+   marginTop: 10,
+  textAlign: 'center',
+},
+
+ buttonText: {
+     
+        color: 'white',
+        fontSize: 14,
+        fontWeight:'bold',
+ }
+});
+
+
+
+
+export default Signin;
