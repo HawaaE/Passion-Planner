@@ -103,12 +103,6 @@ CONTINUE
 const styles = StyleSheet.create({
 
 
-containerView: {
-
-flex: 1,
-
-},
-
 signupScreenContainer: {
 
 flex: 1,
